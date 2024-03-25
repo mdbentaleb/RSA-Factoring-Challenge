@@ -1,13 +1,15 @@
 #!/usr/bin/python3
+
+
 import sys
 import time
 
 
 
-def fact(nbrs):
-	for j in range(2, int(nbrs ** 0.5) + 1):
-		if nbrs % j == 0:
-			return j, nbrs // j
+def fact(nb):
+	for e in range(2, int(nb ** 0.5) + 1):
+		if nb % e == 0:
+			return e, nb // e
 	return None
 
 
@@ -20,17 +22,17 @@ if __name__ == "__main__":
 
 	try:
 		with open(input_file, 'r') as f:
-			lines = f.readlines()
+			lns = f.readlines()
 	except FileNotFoundError:
 		print("File not found")
 		exit()
 
 	start_time = time.time()
-	for line in lines:
-		nbr = int(line.strip())
-		factors = fact(nbr)
+	for l in lns:
+		n = int(l.strip())
+		factors = fact(n)
 		if factors:
-			print(f"{num}={factors[0]}*{factors[1]}")
+			print(f"{n}={factors[1]}*{factors[0]}")
 		if time.time() - start_time > 5:
 			print("Time limit exceeded")
 			exit()

@@ -1,61 +1,28 @@
 #!/usr/bin/python3
 
-
-import random
-import sys
-import time
+from sys import argv
 
 
-def is_prime(nbrs, p = 20):
-	if nbrs == 2 or nbrs == 3:
-		return True
-	if nbrs < 2 or nbrs % 2 == 0:
-		return False
+def factorize(number_to_check):
+    i = 2
 
-	m = nbrs - 1
-	j = 0
-	while m % 2 == 0:
-		m //= 2
-		j += 1
+    if number_to_check < 2:
+        return
+    
+    while number_to_check % i:
+        i += 1
+    print("{:.0f}={:.0f}*{:.0f}".format(number_to_check, number_to_check / i, i))
 
-	for _ in range(p):
-		w = random.randint(2, nbrs - 2)
-		x = pow(w, m, nbrs)
-		if x == 1 or x == nbrs - 1:
-			continue
-		for _ in range(j - 1):
-			x = pow(x, 2, nbrs)
-			if x == nbrs - 1:
-				break
-		else:
-			return False
-
-	return True
-
-
-if __name__ == "__main__":
-	if len(sys.argv) != 2:
-		print("Usage: rsa <file>")
-		exit()
-
-input_file = sys.argv[1]
+if len(argv) != 2:
+    exit()
 
 try:
-	with open(input_file, 'r') as f:
-		lines = f.readlines()
-except FileNotFoundError:
-	print("File not found")
-	exit()
+    with open(argv[1]) as file:
+        line = file.readline()
 
-start_time = time.time()
-
-nb = int(lines[0].strip())
-
-for s in range(2, nb // 2):
-	if nb % s == 0 and is_prime(s) and is_prime(nb // s):
-		print(f"{nb}={nb // s}*{s}")
-		break
-
-	if time.time() - start_time > 5:
-		print("Time limit exceeded")
-		exit()
+        while line != "":
+            number_to_check = int(line.split('\n')[0])
+            factorize(number_to_check)
+            line = file.readline()
+except:
+    pass
