@@ -8,9 +8,6 @@ thereby demonstrating the difficulty of breaking RSA encryption.
 
 
 
-
-
-
 ## Author
 
 [mdbentaleb](https://github.com/mdbentaleb)
