@@ -53,7 +53,7 @@ nb = int(lines[0].strip())
 
 for s in range(2, nb // 2):
 	if nb % s == 0 and is_prime(s) and is_prime(nb // s):
-		print(f"{nb}={s}*{nb // s}")
+		print(f"{nb}={nb // s}*{s}")
 		break
 
 	if time.time() - start_time > 5:
